@@ -38,12 +38,29 @@ function actualizarRuleta() {
     ruletaElemento.innerHTML = '';
 
     const pasoGrados = 360 / lineas.length;
+    const radioRuleta = ruletaElemento.offsetWidth / 2 || 190;
+    const distanciaTexto = radioRuleta * 0.62;
+
     lineas.forEach((texto, i) => {
-        const angulo = i * pasoGrados;
+        const anguloMedio = 90 + i * pasoGrados + pasoGrados / 2;
+        const anguloRad = (anguloMedio * Math.PI) / 180;
+
+        const x = radioRuleta + distanciaTexto * Math.cos(anguloRad);
+        const y = radioRuleta + distanciaTexto * Math.sin(anguloRad);
+
         const etiqueta = document.createElement('div');
         etiqueta.className = 'segmento-texto';
         etiqueta.textContent = texto;
-        etiqueta.style.transform = `rotate(${angulo + pasoGrados / 2}deg) translate(0, -170px) rotate(-${angulo + pasoGrados / 2}deg)`;
+
+        etiqueta.style.position = 'absolute';
+        etiqueta.style.left = x + 'px';
+        etiqueta.style.top = y + 'px';
+        etiqueta.style.transform = `translate(-50%, -50%) rotate(${anguloMedio}deg)`;
+        etiqueta.style.width = (distanciaTexto * 1.1) + 'px';
+        etiqueta.style.textAlign = 'center';
+        etiqueta.style.fontSize = lineas.length > 12 ? '1rem' : '1.25rem';
+        etiqueta.style.transformOrigin = 'center center';
+
         ruletaElemento.appendChild(etiqueta);
     });
 
@@ -90,6 +107,29 @@ function marcarSegmentoSeleccionado(indice) {
     etiquetas.forEach((etiqueta, i) => {
         etiqueta.classList.toggle('activo', i === indice);
     });
+
+    // resaltar el segmento ganador con overlay
+    const canvas = ruletaElemento.querySelector('#overlay-ganador');
+    if (canvas) canvas.remove();
+
+    const lineas = obtenerLineas();
+    const pasoGrados = 360 / lineas.length;
+    const overlay = document.createElement('div');
+    overlay.id = 'overlay-ganador';
+    overlay.style.cssText = `
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: conic-gradient(
+            from ${90 + indice * pasoGrados}deg,
+            rgba(255,255,255,0.38) 0deg,
+            rgba(255,255,255,0.38) ${pasoGrados}deg,
+            transparent ${pasoGrados}deg
+        );
+        pointer-events: none;
+        z-index: 2;
+    `;
+    ruletaElemento.appendChild(overlay);
 }
 
 function reiniciarTodo() {
@@ -100,6 +140,9 @@ function reiniciarTodo() {
     ruletaElemento.style.transform = 'rotate(0deg)';
     actualizarRuleta();
     localStorage.removeItem('datosRuleta');
+    // agrega esto:
+    const overlay = ruletaElemento.querySelector('#overlay-ganador');
+    if (overlay) overlay.remove();
 }
 
 function ocultarSeleccionado() {
