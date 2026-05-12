@@ -1,13 +1,48 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Ruleta de Equipo</title>
 
-        <link rel="stylesheet" href="index.css">
-    </head>
-    <body>
-        
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Ruleta Virtual - FIS UNCP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="contenedor-principal">
+        <div class="contenedor contenedor-izquierdo">
+            <h1 id="pantalla-respuesta">RESPUESTA</h1>
+
+            <div class="ruleta-container">
+                <div id="indicador-seleccion"></div>
+                <div id="ruleta-grafica" class="ruleta"></div>
+                <button id="boton-centro" onclick="girarRuleta()">haz clic para girarlo</button>
+            </div>
+        </div>
+
+
+        <div class="contenedor contenedor-derecho">
+                <div class="botones">
+                    <button class="btn " id="btn-iniciar" onclick="girarRuleta()">Iniciar</button>
+                    <button class="btn " id="btn-reiniciar" onclick="reiniciarTodo()">Reiniciar</button>
+                </div>
+
+                <textarea id="lista-elementos" placeholder="Ingresa un elemento por línea..."></textarea>
+                
+                <div class="opciones">
+                    <button class="btn btn-lista" id="btn-titulo">Título</button>
+                    <button class="btn btn-lista" id="btn-editar">Editar</button>
+                    <button class="btn btn-lista" id="btn-esconder">Esconder</button>
+                </div>
+
+                <div class="atajos">
+                    <p><strong>SPACE</strong> Gíralo</p>
+                    <p><strong>S</strong> Ocultar seleccionado</p>
+                    <p><strong>R</strong> Reiniciar</p>
+                    <p><strong>F</strong> Pantalla completa</p>
+                </div>
+            </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
 </html>
