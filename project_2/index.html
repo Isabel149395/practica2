@@ -1,13 +1,83 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sorteo de Equipos</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sorteo de Equipos</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <!-- PANTALLA 1 -->
+  <div id="pantalla-configuracion" class="pantalla activa">
+    <header class="cabecera">
+      <h1>⚽ Sorteo de Equipos</h1>
+      <p>Crea equipos al azar a partir de una lista de participantes</p>
+    </header>
 
-        <link rel="stylesheet" href="index.css">
-    </head>
-    <body>
-        
-    </body>
+    <main class="contenedor-principal">
+      <!-- Columna izquierda -->
+      <section class="panel">
+        <h2>1. Ingresa los participantes</h2>
+        <textarea
+          id="textarea-participantes"
+          placeholder="Cada participante en una nueva línea (máx. 100, hasta 50 caracteres c/u)"
+          spellcheck="false"
+        ></textarea>
+        <div class="info-contador">
+          <span id="contador-participantes">0 participantes</span>
+          <small>Agrega un * para indicar líderes de grupo. Ej: *Juan</small>
+        </div>
+      </section>
+
+      <!-- Columna derecha -->
+      <section class="panel">
+        <h2>2. ¿Cómo dividir?</h2>
+        <div class="opciones-division">
+          <label class="opcion-radio">
+            <input type="radio" name="tipoDivision" id="radio-cantidad-equipos" value="equipos" checked />
+            <span>Cantidad de equipos</span>
+          </label>
+          <label class="opcion-radio">
+            <input type="radio" name="tipoDivision" id="radio-por-equipo" value="porEquipo" />
+            <span>Participantes por equipo</span>
+          </label>
+        </div>
+
+        <select id="selector-division" class="selector"></select>
+
+        <h2 style="margin-top:1.5rem">3. Título</h2>
+        <input
+          type="text"
+          id="input-titulo"
+          class="input-titulo"
+          placeholder="Ej: Copa del Mundo Qatar 2022"
+          maxlength="80"
+        />
+
+        <div class="botones-accion">
+          <button id="btn-limpiar" class="btn-secundario">Limpiar</button>
+          <button id="btn-generar" class="btn-primario">Generar equipos ▶</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- PANTALLA 2: Resultado -->
+  <div id="pantalla-resultado" class="pantalla">
+    <header class="cabecera">
+      <h1 id="titulo-resultado">Equipos</h1>
+      <button id="btn-volver" class="btn-volver">← Volver</button>
+    </header>
+
+    <div id="contenedor-equipos" class="contenedor-equipos"></div>
+
+    <div class="barra-exportar">
+      <button id="btn-descargar-jpg" class="btn-exportar">📷 Descargar JPG</button>
+      <button id="btn-copiar-imagen" class="btn-exportar">📋 Copiar imagen</button>
+      <button id="btn-copiar-texto" class="btn-exportar">📝 Copiar texto</button>
+    </div>
+  </div>
+
+  <script src="index.js"></script>
+</body>
 </html>

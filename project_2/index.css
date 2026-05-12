@@ -1,0 +1,270 @@
+/* ===== VARIABLES ===== */
+:root {
+  --fondo: #0f1117;
+  --fondo-panel: #1a1d27;
+  --fondo-tarjeta: #22263a;
+  --borde: #2e3350;
+  --acento: #e63946;
+  --acento2: #457b9d;
+  --texto: #e8eaf0;
+  --texto-suave: #8b90a7;
+  --radio: 12px;
+  --sombra: 0 4px 24px rgba(0,0,0,0.45);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+}
+
+/* ===== PANTALLAS ===== */
+.pantalla { display: none; flex-direction: column; min-height: 100vh; }
+.pantalla.activa { display: flex; }
+
+/* ===== CABECERA ===== */
+.cabecera {
+  background: linear-gradient(135deg, #1a1d27, #12151f);
+  padding: 1.5rem 2rem;
+  border-bottom: 2px solid var(--acento);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.cabecera h1 { font-size: 1.6rem; color: var(--texto); }
+.cabecera p { color: var(--texto-suave); font-size: 0.9rem; }
+
+/* ===== LAYOUT PRINCIPAL ===== */
+.contenedor-principal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .contenedor-principal { grid-template-columns: 1fr; padding: 1rem; }
+}
+
+/* ===== PANEL ===== */
+.panel {
+  background: var(--fondo-panel);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: var(--sombra);
+}
+.panel h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--acento);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ===== TEXTAREA ===== */
+textarea {
+  width: 100%;
+  height: 220px;
+  background: #12151f;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  color: var(--texto);
+  font-size: 0.95rem;
+  padding: 0.75rem;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+  line-height: 1.6;
+}
+textarea:focus { border-color: var(--acento2); }
+
+/* ===== CONTADOR ===== */
+.info-contador {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+#contador-participantes {
+  font-size: 0.85rem;
+  color: var(--acento2);
+  font-weight: 600;
+}
+.info-contador small { color: var(--texto-suave); font-size: 0.78rem; }
+
+/* ===== RADIO ===== */
+.opciones-division { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.opcion-radio {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+.opcion-radio input[type="radio"] { accent-color: var(--acento); }
+
+/* ===== SELECTOR ===== */
+.selector {
+  width: 100%;
+  background: #12151f;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  color: var(--texto);
+  padding: 0.6rem 0.75rem;
+  font-size: 0.95rem;
+  outline: none;
+  cursor: pointer;
+}
+.selector:focus { border-color: var(--acento2); }
+
+/* ===== INPUT TITULO ===== */
+.input-titulo {
+  width: 100%;
+  background: #12151f;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  color: var(--texto);
+  padding: 0.6rem 0.75rem;
+  font-size: 0.95rem;
+  outline: none;
+}
+.input-titulo:focus { border-color: var(--acento2); }
+
+/* ===== BOTONES ===== */
+.botones-accion {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+.btn-primario {
+  background: var(--acento);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.btn-primario:hover { background: #c1121f; transform: translateY(-1px); }
+.btn-primario:active { transform: translateY(0); }
+
+.btn-secundario {
+  background: transparent;
+  color: var(--texto-suave);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-secundario:hover { border-color: var(--acento); color: var(--acento); }
+
+/* ===== RESULTADO ===== */
+.btn-volver {
+  background: transparent;
+  color: var(--texto-suave);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+.btn-volver:hover { color: var(--texto); border-color: var(--texto); }
+
+.contenedor-equipos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  padding: 2rem;
+  justify-content: center;
+  flex: 1;
+}
+
+/* ===== TARJETA EQUIPO ===== */
+.tarjeta-equipo {
+  background: var(--fondo-tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 1.2rem;
+  min-width: 180px;
+  max-width: 240px;
+  flex: 1 1 180px;
+  box-shadow: var(--sombra);
+  animation: aparecer 0.4s ease both;
+}
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.tarjeta-equipo h3 {
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--acento);
+  border-bottom: 1px solid var(--borde);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+.lista-miembros {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.miembro {
+  font-size: 0.9rem;
+  color: var(--texto);
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  background: rgba(255,255,255,0.04);
+  animation: entrar 0.35s ease both;
+}
+.miembro.lider {
+  color: #ffd166;
+  font-weight: 700;
+}
+.miembro.lider::before { content: "★ "; }
+
+@keyframes entrar {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ===== BARRA EXPORTAR ===== */
+.barra-exportar {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.2rem 2rem 2rem;
+  flex-wrap: wrap;
+}
+.btn-exportar {
+  background: var(--fondo-panel);
+  color: var(--texto);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 0.65rem 1.2rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-exportar:hover { border-color: var(--acento2); background: var(--fondo-tarjeta); }
